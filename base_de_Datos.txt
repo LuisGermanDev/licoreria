@@ -7,3 +7,34 @@ CREATE TABLE usuarios (
     correo VARCHAR(100) NOT NULL UNIQUE,
     contrasena VARCHAR(255) NOT NULL
 );
+CREATE TABLE ventas (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    producto_id INT(11) NOT NULL,
+    cantidad INT(11) NOT NULL,
+    total DECIMAL(10, 2) NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (producto_id) REFERENCES productos(id)
+);
+CREATE TABLE facturas (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    venta_id INT(11) NOT NULL,
+    cliente VARCHAR(100) NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (venta_id) REFERENCES ventas(id)
+);
+
+CREATE TABLE factura_detalles (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    factura_id INT(11) NOT NULL,
+    producto_id INT(11) NOT NULL,
+    cantidad INT(11) NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (factura_id) REFERENCES facturas(id),
+    FOREIGN KEY (producto_id) REFERENCES productos(id)
+);
+CREATE TABLE productos (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL,
+    stock INT(11) NOT NULL
+);

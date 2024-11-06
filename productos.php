@@ -20,10 +20,12 @@ $result = $conn->query($query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos - Licorería</title>
+    <link rel="stylesheet" href="admin.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
         <a class="navbar-brand" href="#">Licorería Dani</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -37,6 +39,7 @@ $result = $conn->query($query);
                 <li class="nav-item"><a class="nav-link" href="reportes.php">Reportes</a></li>
                 <li class="nav-item"><a class="nav-link" href="logout.php">Cerrar sesión</a></li>
             </ul>
+        </div>
         </div>
     </nav>
     <div class="container mt-4">
@@ -78,7 +81,9 @@ $result = $conn->query($query);
             </tbody>
         </table>
     </div>
-
+    <footer>
+      <p>&copy; 2024 Tu Licoreria Dani Todos los derechos reservados. Prohibida su reproducción total o parcial sin autorización.</p>
+    </footer>
     <!-- Scripts de JavaScript de Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
