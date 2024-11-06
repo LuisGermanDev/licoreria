@@ -28,18 +28,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Registro</title>
     <style>
         /* Estilos comunes para el formulario */
-        body {
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border: 1px solid black; */
+}
+        .body {
+            background-image: url("./img/canasta.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+            font-family: Arial, sans-serif;
+
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 96vh;
             background-color: #f7f7f7; /* Color de fondo */
             margin: 0; /* Eliminar márgenes predeterminados */
         }
 
         .form {
             background-color: #ffffff; /* Fondo blanco */
-            padding: 5rem 7rem; /* Espacio interno mayor */
+            padding: 5rem 5rem; /* Espacio interno mayor */
             max-width: 400px; /* Ajustar el ancho del formulario */
             border-radius: 10px; /* Bordes redondeados */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
@@ -52,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             font-weight: 600;
             color: #333; /* Color del texto */
             margin-bottom: 1.5rem; /* Espaciado inferior */
+
         }
 
         .input-container {
@@ -63,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             padding: 1rem;
             font-size: 0.875rem;
             line-height: 1.25rem;
-            width: 86%; /* Ajuste para que ocupe todo el contenedor */
+            width: 100%; /* Ajuste para que ocupe todo el contenedor */
             border-radius: 5px; /* Bordes redondeados para los inputs */
             border: 1px solid #d1d5db; /* Borde gris claro */
             margin-bottom: 1rem; /* Espaciado inferior */
@@ -105,10 +118,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             text-decoration: underline;
             color: #4F46E5; /* Color del enlace */
         }
+        header {
+    background-color: #ffffff;
+    padding: 10px 0;
+    color: black;
+}
+
+.navbar {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar li {
+    margin: 0 40px;
+}
+
+.navbar a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #ff6347;
+}
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 40px 600px;
+}
     </style>
 </head>
 <body>
-    <form class="form" method="post" action="">
+<header>
+<nav>
+        <ul class="navbar">
+          <li><h1>DANI</h1></li>
+          <li><a href="index.php">Inicio</a></li>
+          <li><a href="index.php">Servicios</a></li>
+          <li><a href="index.php">Acerca de</a></li>
+          <li><a href="index.php">Contacto</a></li>
+          <li><a href="login.php">Iniciar Sesion</a></li>
+          <li><a href="registro.php">Registrarse</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="body">
+        <form class="form" method="post" action="">
         <p class="form-title">Registro de Usuario</p>
         <div class="input-container">
             <input placeholder="Ingresa tu nombre" type="text" name="nombre" required>
@@ -126,5 +186,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a href="login.php">Inicia sesión</a>
         </p>
     </form>
+    </div>
+    <footer>
+      <p>&copy; 2024 Tu Licoreria Dani Todos los derechos reservados. Prohibida su reproducción total o parcial sin autorización.</p>
+    </footer>
 </body>
 </html>
