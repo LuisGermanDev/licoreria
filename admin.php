@@ -26,9 +26,9 @@ if (!isset($_SESSION['correo'])) {
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="admin.php">Panel de Control</a></li>
                 <li class="nav-item"><a class="nav-link" href="productos.php">Productos</a></li>
-                <li class="nav-item"><a class="nav-link" href="ventas.html">Ventas</a></li>
-                <li class="nav-item"><a class="nav-link" href="facturas.html">Facturas</a></li>
-                <li class="nav-item"><a class="nav-link" href="reportes.html">Reportes</a></li>
+                <li class="nav-item"><a class="nav-link" href="ventas.php">Ventas</a></li>
+                <li class="nav-item"><a class="nav-link" href="facturas.php">Facturas</a></li>
+                <li class="nav-item"><a class="nav-link" href="reportes.php">Reportes</a></li>
                 <li class="nav-item"><a class="nav-link" href="logout.php">Cerrar sesión</a></li>
             </ul>
         </div>

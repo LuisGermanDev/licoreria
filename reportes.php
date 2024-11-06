@@ -9,9 +9,26 @@ if (!isset($_SESSION['correo'])) {
 
 include 'connection.php'; // Incluir archivo de conexión
 
-// Consulta para obtener la lista de productos
-$query = "SELECT id, nombre, precio, stock FROM productos";
-$result = $conn->query($query);
+// Consultas para generar reportes
+// Total de ventas
+$total_ventas_query = "SELECT SUM(total) AS total_ventas FROM ventas";
+$total_ventas_result = $conn->query($total_ventas_query);
+$total_ventas = $total_ventas_result->fetch_assoc()['total_ventas'];
+
+// Ventas por producto
+$ventas_por_producto_query = "
+    SELECT p.nombre, SUM(v.cantidad) AS total_cantidad, SUM(v.total) AS total_ventas
+    FROM ventas v
+    JOIN productos p ON v.producto_id = p.id
+    GROUP BY p.nombre
+";
+
+$ventas_por_producto_result = $conn->query($ventas_por_producto_query);
+
+// Consultar las facturas generadas
+$facturas_query = "SELECT COUNT(*) AS total_facturas FROM facturas";
+$facturas_result = $conn->query($facturas_query);
+$total_facturas = $facturas_result->fetch_assoc()['total_facturas'];
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +36,7 @@ $result = $conn->query($query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos - Licorería</title>
+    <title>Reportes - Licorería</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -40,39 +57,35 @@ $result = $conn->query($query);
         </div>
     </nav>
     <div class="container mt-4">
-        <h3>Gestión de Productos</h3>
-        <div class="mb-3">
-            <a href="agregar_producto.php" class="btn btn-primary">Agregar Producto</a>
+        <h3>Reportes de Ventas y Facturas</h3>
+
+        <div class="mb-4">
+            <h5>Total de Ventas: <strong>$<?php echo number_format($total_ventas, 2); ?></strong></h5>
+            <h5>Total de Facturas Generadas: <strong><?php echo $total_facturas; ?></strong></h5>
         </div>
-        
+
+        <h4>Ventas por Producto</h4>
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
-                    <th>Acciones</th>
+                    <th>Producto</th>
+                    <th>Total Vendido (Cantidad)</th>
+                    <th>Total Ventas ($)</th>
                 </tr>
             </thead>
-            <tbody id="productos-lista">
+            <tbody>
                 <?php
-                // Listar los productos en la tabla
-                if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
+                // Listar ventas por producto
+                if ($ventas_por_producto_result->num_rows > 0) {
+                    while ($row = $ventas_por_producto_result->fetch_assoc()) {
                         echo "<tr>
-                                <td>{$row['id']}</td>
                                 <td>{$row['nombre']}</td>
-                                <td>{$row['precio']}</td>
-                                <td>{$row['stock']}</td>
-                                <td>
-                                    <a href='editar_producto.php?id={$row['id']}' class='btn btn-warning'>Editar</a>
-                                    <a href='eliminar_producto.php?id={$row['id']}' class='btn btn-danger'>Eliminar</a>
-                                </td>
+                                <td>{$row['total_cantidad']}</td>
+                                <td>$" . number_format($row['total_ventas'], 2) . "</td>
                               </tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='5'>No hay productos disponibles.</td></tr>";
+                    echo "<tr><td colspan='3'>No hay ventas registradas.</td></tr>";
                 }
                 ?>
             </tbody>
