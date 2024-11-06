@@ -1,0 +1,9 @@
+CREATE DATABASE licoreria;
+use licoreria;
+
+CREATE TABLE usuarios (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    correo VARCHAR(100) NOT NULL UNIQUE,
+    contrasena VARCHAR(255) NOT NULL
+);

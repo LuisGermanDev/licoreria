@@ -15,7 +15,8 @@
           <li><a href="#servicios">Servicios</a></li>
           <li><a href="#acerca-de">Acerca de</a></li>
           <li><a href="#contacto">Contacto</a></li>
-          <li><a href="#portafolio">Iniciar Sesion</a></li>
+          <li><a href="login.php">Iniciar Sesion</a></li>
+          <li><a href="registro.php">Registrarse</a></li>
         </ul>
       </nav>
     </header>
